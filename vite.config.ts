@@ -16,7 +16,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'ensemble',
       fileName: (format) => `ensemble.${format}.js`,
-      formats: ['es', 'cjs']
+      formats: ['es']
     },
     rollupOptions: {
       //   make sure to externalize deps that shouldn't be bundled
