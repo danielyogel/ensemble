@@ -1,7 +1,7 @@
-import { main } from './';
+import { Ensemble } from './';
 
 describe('works', () => {
   it('passes', () => {
-    expect(main).toBeDefined();
+    expect(Ensemble).toBeDefined();
   });
 });
