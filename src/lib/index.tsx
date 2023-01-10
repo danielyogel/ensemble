@@ -17,7 +17,7 @@ const RADIUS = 350;
 const BASE_MARGIN_Y = 500;
 const BASE_MARGIN_X = 350;
 
-export function DynamicLayout<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex }: Params<V>) {
+export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex }: Params<V>) {
   return (
     <div className='h-full relative overflow-scroll flex grow-0 shrink-0'>
       {indexItem && (

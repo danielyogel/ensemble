@@ -3,10 +3,10 @@ import '../index.css';
 import classNames from 'classnames';
 import { useState } from 'react';
 import { SingleSelect } from './components';
-import { DynamicLayout } from '.';
+import { Ensemble } from '.';
 import { OPTIONS } from './CONSTANTS';
 
-export function DynamicLayoutStory() {
+export function EnsembleStory() {
   const [state, setState] = useState<typeof OPTIONS[number]>('MATRIX');
 
   const items = [...Array(60)].map((_, i) => ({ id: String(i), text: String(i) }));
@@ -15,7 +15,7 @@ export function DynamicLayoutStory() {
   return (
     <section className='p-2 flex w-11/12 mx-auto'>
       <section className='mt-12 mx-6 w-10/12 grow-0 overflow-hidden' style={{ height: '47rem' }}>
-        <DynamicLayout
+        <Ensemble
           layout={state}
           items={items}
           indexItem={{ id: 'index123', text: 'IDX' }}
