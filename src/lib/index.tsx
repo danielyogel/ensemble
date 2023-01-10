@@ -19,7 +19,7 @@ const BASE_MARGIN_X = 350;
 
 export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex }: Params<V>) {
   return (
-    <div className='h-full relative overflow-scroll flex grow-0 shrink-0'>
+    <div className='h-full relative overflow-scroll'>
       {indexItem && (
         <motion.div
           key={indexItem.id}
@@ -37,7 +37,7 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
       )}
 
       <div
-        className={classnames('flex transition-transform duration-800 grow', {
+        className={classnames('flex transition-transform duration-800', {
           'flex-wrap': layout === 'MATRIX',
           'translate-y-96': layout === 'LIST',
           'overflow-x-scroll': layout !== layout
