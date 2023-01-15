@@ -1,15 +1,14 @@
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import classnames from 'classnames';
-
-type Layout = 'SUN' | 'LIST' | 'MATRIX';
+import type { OptionsType } from './CONSTANTS';
 
 type Params<V extends { id: string }> = {
-  layout: Layout;
+  layout: OptionsType;
   indexItem: V | null;
   items: Array<V>;
-  renderIndex: (params: { item: V; layout: Layout }) => ReactNode;
-  renderItem: (params: { item: V; layout: Layout; index: number }) => ReactNode;
+  renderIndex: (params: { item: V; layout: OptionsType }) => ReactNode;
+  renderItem: (params: { item: V; layout: OptionsType; index: number }) => ReactNode;
 };
 
 const RADIUS = 350;
@@ -25,11 +24,8 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
           key={indexItem.id}
           layout
           transition={{ ease: 'easeInOut', duration: 0.7 }}
-          className={classnames('m-2', {
-            absolute: layout === 'SUN',
-            'w-52 h-80': true,
-            fixed: layout === 'LIST'
-          })}
+          initial={false}
+          className={classnames({ absolute: layout === 'SUN', fixed: layout === 'LIST' })}
           style={{ ...(layout === 'SUN' && { top: `${BASE_MARGIN_X - 150}px`, left: `${BASE_MARGIN_Y - 80}px` }) }}
         >
           {renderIndex({ item: indexItem, layout })}
@@ -52,18 +48,15 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
             <motion.div
               key={currItem.id}
               layout
-              className={classnames('shrink-0 grow-0 p-1', {
+              className={classnames('shrink-0 grow-0', {
                 absolute: layout === 'SUN',
                 'm-7': layout === 'MATRIX',
-                'm-0': layout === 'LIST',
+                'm-3': layout === 'LIST',
                 'm-2': layout === 'SUN'
               })}
-              animate={{ ...(layout === 'LIST' ? { width: '144px', height: '144px' } : { width: '37px', height: '37px' }) }}
+              initial={false}
               transition={{ duration: 0.7, ease: 'easeOut' }}
-              style={{
-                top: `${BASE_MARGIN_X + x}px`,
-                left: `${BASE_MARGIN_Y + y}px`
-              }}
+              style={{ top: `${BASE_MARGIN_X + x}px`, left: `${BASE_MARGIN_Y + y}px` }}
             >
               {renderItem({ item: currItem, layout, index })}
             </motion.div>

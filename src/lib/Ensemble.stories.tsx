@@ -7,23 +7,23 @@ import { Ensemble } from '.';
 import { OPTIONS } from './CONSTANTS';
 
 export function EnsembleStory() {
-  const [state, setState] = useState<typeof OPTIONS[number]>('MATRIX');
+  const [state, setState] = useState<typeof OPTIONS[number]>('LIST');
 
   const items = [...Array(60)].map((_, i) => ({ id: String(i), text: String(i) }));
   const _OPTIONS = OPTIONS.map((key) => ({ key }));
 
   return (
-    <section className='p-2 flex w-11/12 mx-auto'>
+    <section className='p-2 flex w-11/12 mx-auto h-full'>
       <section className='mt-12 mx-6 w-10/12 grow-0 overflow-hidden' style={{ height: '47rem' }}>
         <Ensemble
           layout={state}
           items={items}
           indexItem={{ id: 'index123', text: 'IDX' }}
           renderItem={({ item: { id, text } }) => {
-            return <div className='bg-primary w-full h-full'>content</div>;
+            return <RenderCard />;
           }}
           renderIndex={({ item: { id, text }, layout }) => {
-            return <div className={classNames('bg-primary w-full h-full')}>content</div>;
+            return <RenderCard />;
           }}
         />
       </section>
@@ -32,4 +32,8 @@ export function EnsembleStory() {
       </section>
     </section>
   );
+}
+
+function RenderCard() {
+  return <div className='border w-32 h-20 bg-primary'>content</div>;
 }
