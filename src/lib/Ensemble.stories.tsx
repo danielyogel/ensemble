@@ -18,7 +18,7 @@ export function EnsembleStory() {
         <Ensemble
           layout={state}
           items={items}
-          indexItem={{ id: 'index123', text: 'IDX' }}
+          indexItem={null}
           renderItem={({ item: { id, text } }) => {
             return <RenderCard />;
           }}

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import classnames from 'classnames';
 import type { OptionsType } from './CONSTANTS';
@@ -18,7 +18,7 @@ const BASE_MARGIN_X = 350;
 
 export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex }: Params<V>) {
   return (
-    <div className='h-full relative overflow-scroll'>
+    <div className='h-full w-full relative'>
       {indexItem && (
         <motion.div
           key={indexItem.id}
@@ -33,29 +33,28 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
       )}
 
       <div
-        className={classnames('flex transition-transform duration-800', {
+        className={classnames('flex transition-transform duration-1000', {
           'flex-wrap': layout === 'MATRIX',
           'translate-y-96': layout === 'LIST',
-          'overflow-x-scroll': layout !== layout
+          'overflow-x-scroll': layout === 'LIST'
         })}
       >
         {items.map((currItem, index) => {
-          const angle = index * (360 / items.length);
-          const x = RADIUS * Math.sin((Math.PI * 2 * angle) / 360);
-          const y = RADIUS * Math.cos((Math.PI * 2 * angle) / 360);
+          const angle = useMemo(() => index * (360 / items.length), [index, items.length]);
+          const x = useMemo(() => RADIUS * Math.sin((Math.PI * 2 * angle) / 360), [angle]);
+          const y = useMemo(() => RADIUS * Math.cos((Math.PI * 2 * angle) / 360), [angle]);
 
           return (
             <motion.div
               key={currItem.id}
               layout
+              initial={false}
+              transition={{ duration: 0.7, ease: 'easeInOut' }}
               className={classnames('shrink-0 grow-0', {
                 absolute: layout === 'SUN',
-                'm-7': layout === 'MATRIX',
-                'm-3': layout === 'LIST',
+                'm-7': layout !== 'SUN',
                 'm-2': layout === 'SUN'
               })}
-              initial={false}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
               style={{ top: `${BASE_MARGIN_X + x}px`, left: `${BASE_MARGIN_Y + y}px` }}
             >
               {renderItem({ item: currItem, layout, index })}
