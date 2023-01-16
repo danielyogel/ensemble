@@ -32,7 +32,13 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
         </motion.div>
       )}
 
-      <div className={classnames('flex', { 'flex-wrap': layout === 'MATRIX', 'overflow-x-scroll': layout === 'LIST' })}>
+      <div
+        className={classnames('flex h-full items-center', {
+          'flex-wrap': layout === 'MATRIX',
+          'overflow-y-scroll': layout === 'MATRIX',
+          'overflow-x-scroll': layout === 'LIST'
+        })}
+      >
         {items.map((currItem, index) => {
           const angle = useMemo(() => index * (360 / items.length), [index, items.length]);
           const x = useMemo(() => RADIUS * Math.sin((Math.PI * 2 * angle) / 360), [angle]);
