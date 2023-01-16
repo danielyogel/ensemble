@@ -46,16 +46,12 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
 
           return (
             <motion.div
-              key={currItem.id}
               layout
               initial={false}
               transition={{ duration: 0.7, ease: 'easeInOut' }}
-              className={classnames('shrink-0 grow-0', {
-                absolute: layout === 'SUN',
-                'm-7': layout !== 'SUN',
-                'm-2': layout === 'SUN'
-              })}
+              className={classnames('shrink-0 grow-0 m-7', { absolute: layout === 'SUN' })}
               style={{ top: `${BASE_MARGIN_X + x}px`, left: `${BASE_MARGIN_Y + y}px` }}
+              key={currItem.id}
             >
               {renderItem({ item: currItem, layout, index })}
             </motion.div>
