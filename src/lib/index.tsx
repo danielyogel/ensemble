@@ -24,7 +24,7 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
         <motion.div
           key={indexItem.id}
           layout
-          transition={{ ease: 'easeInOut', duration: 0.7 }}
+          transition={{ ease: 'easeOut', duration: 0.7 }}
           initial={false}
           className={classnames({ absolute: layout === 'SUN', fixed: layout === 'LIST' })}
           style={{ ...(layout === 'SUN' && { top: `${BASE_MARGIN_X - 150}px`, left: `${BASE_MARGIN_Y - 80}px` }) }}
