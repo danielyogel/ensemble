@@ -10,6 +10,7 @@ type Params<V extends { id: string }> = {
   items: Array<V>;
   renderIndex: (params: { item: V; layout: OptionsType }) => ReactNode;
   renderItem: (params: { item: V; layout: OptionsType; index: number }) => ReactNode;
+  forceOverflowVisible: boolean;
 };
 
 export const RADIUS = 350;
@@ -17,7 +18,7 @@ export const RADIUS = 350;
 export const BASE_MARGIN_Y = 500;
 export const BASE_MARGIN_X = 350;
 
-export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex }: Params<V>) {
+export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex, forceOverflowVisible }: Params<V>) {
   return (
     <div className='h-full w-full relative'>
       {indexItem && (
@@ -36,8 +37,9 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
       <div
         className={classnames('flex h-full items-center content-start py-10', {
           'flex-wrap': layout === 'MATRIX',
-          'overflow-y-scroll': layout === 'MATRIX',
-          'overflow-x-scroll': layout === 'LIST'
+          'overflow-y-scroll': !forceOverflowVisible && layout === 'MATRIX',
+          'overflow-x-scroll': !forceOverflowVisible && layout === 'LIST',
+          'overflow-visible': forceOverflowVisible
         })}
       >
         {items.map((item, index) => {

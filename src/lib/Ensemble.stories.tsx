@@ -1,6 +1,5 @@
 import '../index.css';
 
-import classNames from 'classnames';
 import { useState } from 'react';
 import { SingleSelect } from './components';
 import { Ensemble } from '.';
@@ -25,6 +24,7 @@ export function EnsembleStory() {
           renderIndex={({ item: { id, text }, layout }) => {
             return <RenderCard />;
           }}
+          forceOverflowVisible={false}
         />
       </section>
       <section className='shrink-0 grow-0 w-2/12 mt-12'>
