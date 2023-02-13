@@ -32,7 +32,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ladle/react": "^2.5.4",
+    "@ladle/react": "^2.6.3",
     "@nextui-org/react": "^1.0.0-beta.12",
     "ahooks": "^3.7.2",
     "csstype": "^3.1.1",
@@ -40,13 +40,13 @@
     "framer-motion": "^9.0.2",
     "lodash": "^4.17.21",
     "nanoid": "^4.0.1",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.2.6",
     "tsd": "^0.25.0",
-    "zod": "^3.20.3"
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.190",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.9",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-react": "^3.1.0",
@@ -60,10 +60,10 @@
     "react-is": "^18.2.0",
     "ts-toolbelt": "9.6.0",
     "tslib": "^2.5.0",
-    "type-fest": "^3.5.6",
+    "type-fest": "^3.5.7",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
-    "vitest": "^0.28.4"
+    "vitest": "^0.28.5"
   },
   "peerDependencies": {
     "react": ">=16"
