@@ -32,7 +32,7 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
   return (
     <div className={classnames('h-full w-full relative')}>
       <div
-        className={classnames('flex h-full items-center content-start justify-center', {
+        className={classnames('flex h-full items-center content-start justify-center py-10', {
           'flex-wrap': layout === 'MATRIX',
           'overflow-y-scroll': !overflowVisible && layout === 'MATRIX',
           'overflow-x-scroll': !overflowVisible && layout === 'LIST',
