@@ -11,9 +11,10 @@ type Params<V extends { id: string }> = {
   renderIndex: (params: { item: V; layout: Layout }) => ReactNode;
   renderItem: (params: { item: V; layout: Layout; index: number }) => ReactNode;
   overflowVisible: boolean;
+  noPadding?: boolean;
 };
 
-export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex, overflowVisible }: Params<V>) {
+export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex, overflowVisible, noPadding }: Params<V>) {
   const isSingle = layout === 'SINGLE';
 
   const indexcomponent = indexItem ? (
@@ -36,7 +37,8 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
           'flex-wrap': layout === 'MATRIX',
           'overflow-y-scroll': !overflowVisible && layout === 'MATRIX',
           'overflow-x-scroll': !overflowVisible && layout === 'LIST',
-          'overflow-visible': overflowVisible
+          'overflow-visible': overflowVisible,
+          'px-4 sm:px-10 lg:px-18': !noPadding
         })}
       >
         {indexcomponent}
