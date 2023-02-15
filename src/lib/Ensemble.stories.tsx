@@ -17,14 +17,14 @@ export function EnsembleStory() {
         <Ensemble
           layout={state}
           items={items}
-          indexItem={null}
+          indexItem={{ id: 'index', text: 'index' }}
           renderItem={({ item: { id, text } }) => {
-            return <RenderCard />;
+            return <RenderCard text={text} />;
           }}
           renderIndex={({ item: { id, text }, layout }) => {
-            return <RenderCard />;
+            return <RenderCard text={text} />;
           }}
-          forceOverflowVisible={false}
+          overflowVisible={false}
         />
       </section>
       <section className='shrink-0 grow-0 w-2/12 mt-12'>
@@ -34,6 +34,6 @@ export function EnsembleStory() {
   );
 }
 
-function RenderCard() {
-  return <div className='border w-32 h-20 bg-primary'>content</div>;
+function RenderCard({ text }: { text?: string }) {
+  return <div className='border w-32 h-20 bg-primary mr-3 mb-3'>{text}</div>;
 }
