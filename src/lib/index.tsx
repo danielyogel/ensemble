@@ -11,10 +11,9 @@ type Params<V extends { id: string }> = {
   renderIndex: (params: { item: V; layout: Layout }) => ReactNode;
   renderItem: (params: { item: V; layout: Layout; index: number }) => ReactNode;
   overflowVisible: boolean;
-  noPadding?: boolean;
 };
 
-export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex, overflowVisible, noPadding }: Params<V>) {
+export function Ensemble<V extends { id: string }>({ layout, indexItem, items, renderItem, renderIndex, overflowVisible }: Params<V>) {
   const isSingle = layout === 'SINGLE';
 
   const indexcomponent = indexItem ? (
@@ -33,18 +32,24 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
   return (
     <div className={classnames('h-full w-full relative')}>
       <div
-        className={classnames('flex h-full items-center content-start justify-center py-10', {
-          'flex-wrap': layout === 'MATRIX',
+        className={classnames('h-full', {
           'overflow-y-scroll': !overflowVisible && layout === 'MATRIX',
           'overflow-x-scroll': !overflowVisible && layout === 'LIST',
           'overflow-visible': overflowVisible,
-          'px-4 sm:px-10 lg:px-18': !noPadding
+          'pt-16': layout === 'MATRIX'
         })}
       >
-        {indexcomponent}
-        {items.map((item, index) => {
-          return <RenderItemContainer key={item.id} index={index} itemsLength={items.length} layout={layout} renderItem={renderItem} item={item} />;
-        })}
+        <section
+          className={classnames('flex items-center t', {
+            'flex-wrap justify-center max-w-4xl mx-auto content-start': ['MATRIX'].includes(layout),
+            'justify-start h-full content-center px-10': ['LIST', 'SINGLE'].includes(layout)
+          })}
+        >
+          {indexcomponent}
+          {items.map((item, index) => {
+            return <RenderItemContainer key={item.id} index={index} itemsLength={items.length} layout={layout} renderItem={renderItem} item={item} />;
+          })}
+        </section>
       </div>
     </div>
   );

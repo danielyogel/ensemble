@@ -1,4 +1,5 @@
 import '../index.css';
+import '../ladle.css';
 
 import { useState } from 'react';
 import { SingleSelect } from './components';
@@ -12,22 +13,21 @@ export function EnsembleStory() {
   const _OPTIONS = OPTIONS.map((key) => ({ key }));
 
   return (
-    <section className='p-2 flex w-11/12 mx-auto h-full'>
-      <section className='mt-12 mx-6 w-10/12 grow-0 overflow-hidden' style={{ height: '47rem' }}>
-        <Ensemble
-          layout={state}
-          items={items}
-          indexItem={{ id: 'index', text: 'index' }}
-          renderItem={({ item: { id, text } }) => {
-            return <RenderCard text={text} />;
-          }}
-          renderIndex={({ item: { id, text }, layout }) => {
-            return <RenderCard text={text} />;
-          }}
-          overflowVisible={false}
-        />
-      </section>
-      <section className='shrink-0 grow-0 w-2/12 mt-12'>
+    <section className='h-full w-full'>
+      <Ensemble
+        layout={state}
+        items={items}
+        indexItem={{ id: 'index', text: 'index' }}
+        renderItem={({ item: { id, text } }) => {
+          return <RenderCard text={text} />;
+        }}
+        renderIndex={({ item: { id, text }, layout }) => {
+          return <RenderCard text={text} />;
+        }}
+        overflowVisible={false}
+      />
+
+      <section className='fixed bottom-4 right-5'>
         <SingleSelect label='visible' onSelect={setState} value={state} options={_OPTIONS} />
       </section>
     </section>
