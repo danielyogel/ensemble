@@ -41,7 +41,7 @@ export function Ensemble<V extends { id: string }>({ layout, indexItem, items, r
       >
         <section
           className={classnames('flex items-center t', {
-            'flex-wrap justify-center max-w-4xl mx-auto content-start': ['MATRIX'].includes(layout),
+            'flex-wrap justify-center max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
             'justify-start h-full content-center px-10': ['LIST', 'SINGLE'].includes(layout)
           })}
         >
