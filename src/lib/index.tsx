@@ -11,6 +11,7 @@ type Params<V extends { id: string }> = {
   renderIndex: (params: { item: V; layout: Layout }) => ReactNode;
   renderItem: (params: { item: V; layout: Layout; index: number }) => ReactNode;
   overflowVisible: boolean;
+  forceMatrixStart?: boolean;
   noPadding?: boolean;
 };
 
@@ -21,6 +22,7 @@ export function Ensemble<V extends { id: string }>({
   renderItem,
   renderIndex,
   overflowVisible,
+  forceMatrixStart,
   noPadding = false
 }: Params<V>) {
   const isSingle = layout === 'SINGLE';
@@ -50,7 +52,9 @@ export function Ensemble<V extends { id: string }>({
       >
         <section
           className={classnames('flex items-center t', {
-            'flex-wrap justify-center xl:justify-start max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
+            'justify-start': ['MATRIX'].includes(layout) && forceMatrixStart,
+            'justify-center xl:justify-start': ['MATRIX'].includes(layout) && !forceMatrixStart,
+            'flex-wrap  max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
             'justify-start h-full content-center': ['LIST', 'SINGLE'].includes(layout),
             'px-10': ['LIST', 'SINGLE'].includes(layout) && noPadding === false
           })}
