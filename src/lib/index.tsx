@@ -45,7 +45,7 @@ export function Ensemble<V extends { id: string }>({
           'overflow-y-scroll': !overflowVisible && layout === 'MATRIX',
           'overflow-x-scroll': !overflowVisible && layout === 'LIST',
           'overflow-visible': overflowVisible,
-          'pt-20': layout === 'MATRIX'
+          'pt-24': layout === 'MATRIX'
         })}
       >
         <section
