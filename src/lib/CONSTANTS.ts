@@ -1,4 +1,4 @@
-export const OPTIONS = ['SUN', 'LIST', 'MATRIX', 'SINGLE'] as const;
+export const OPTIONS = ['SUN', 'LIST', 'ROWS', 'MATRIX', 'SINGLE'] as const;
 
 export type Layout = typeof OPTIONS[number];
 

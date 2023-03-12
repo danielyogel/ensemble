@@ -5,9 +5,12 @@ import { useState } from 'react';
 import { SingleSelect } from './components';
 import { Ensemble } from '.';
 import { OPTIONS } from './CONSTANTS';
+import classNames from 'classnames';
+
+type LayoutType = typeof OPTIONS[number];
 
 export function EnsembleStory() {
-  const [state, setState] = useState<typeof OPTIONS[number]>('LIST');
+  const [state, setState] = useState<LayoutType>('LIST');
 
   const items = [...Array(60)].map((_, i) => ({ id: String(i), text: String(i) }));
   const _OPTIONS = OPTIONS.map((key) => ({ key }));
@@ -18,11 +21,11 @@ export function EnsembleStory() {
         layout={state}
         items={items}
         indexItem={{ id: 'index', text: 'index' }}
-        renderItem={({ item: { id, text } }) => {
-          return <RenderCard text={text} />;
+        renderItem={({ item: { id, text }, layout }) => {
+          return <RenderCard text={text} layout={layout} />;
         }}
         renderIndex={({ item: { id, text }, layout }) => {
-          return <RenderCard text={text} />;
+          return <RenderCard text={text} layout={layout} />;
         }}
         overflowVisible={false}
       />
@@ -34,6 +37,10 @@ export function EnsembleStory() {
   );
 }
 
-function RenderCard({ text }: { text?: string }) {
-  return <div className='border w-32 h-20 bg-primary mr-3 mb-3'>{text}</div>;
+//
+// internals...
+//
+
+function RenderCard({ text, layout }: { text?: string; layout: LayoutType }) {
+  return <div className={classNames('border h-20 bg-primary mr-3 mb-3', { 'w-32': layout !== 'ROWS' })}>{text}</div>;
 }

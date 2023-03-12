@@ -51,7 +51,8 @@ export function Ensemble<V extends { id: string }>({
         })}
       >
         <section
-          className={classnames('flex items-center t', {
+          className={classnames('items-center t', {
+            flex: layout !== 'ROWS',
             'justify-start': ['MATRIX'].includes(layout) && forceMatrixStart,
             'justify-center xl:justify-start': ['MATRIX'].includes(layout) && !forceMatrixStart,
             'flex-wrap  max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
