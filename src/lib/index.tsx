@@ -44,18 +44,19 @@ export function Ensemble<V extends { id: string }>({
     <div className={classnames('h-full w-full relative')}>
       <div
         className={classnames('h-full', {
-          'overflow-y-scroll': !overflowVisible && layout === 'MATRIX',
+          'overflow-y-scroll': !overflowVisible && (layout === 'MATRIX' || layout === 'ROWS'),
           'overflow-x-scroll': !overflowVisible && layout === 'LIST',
           'overflow-visible': overflowVisible,
-          'pt-24': layout === 'MATRIX'
+          'pt-24': layout === 'MATRIX' || layout === 'ROWS'
         })}
       >
         <section
           className={classnames('items-center t', {
             flex: layout !== 'ROWS',
+            'max-w-2xl mx-auto': layout === 'ROWS',
             'justify-start': ['MATRIX'].includes(layout) && forceMatrixStart,
             'justify-center xl:justify-start': ['MATRIX'].includes(layout) && !forceMatrixStart,
-            'flex-wrap  max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
+            'flex-wrap max-w-6xl mx-auto content-start': ['MATRIX'].includes(layout),
             'justify-start h-full content-center': ['LIST', 'SINGLE'].includes(layout),
             'px-10': ['LIST', 'SINGLE'].includes(layout) && noPadding === false
           })}
