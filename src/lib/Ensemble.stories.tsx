@@ -20,7 +20,7 @@ export function EnsembleStory() {
       <Ensemble
         layout={state}
         items={items}
-        indexItem={{ id: 'index', text: 'index' }}
+        indexItem={null}
         renderItem={({ item: { id, text }, layout }) => {
           return <RenderCard text={text} layout={layout} />;
         }}
@@ -42,5 +42,5 @@ export function EnsembleStory() {
 //
 
 function RenderCard({ text, layout }: { text?: string; layout: LayoutType }) {
-  return <div className={classNames('border h-20 bg-primary mr-3 mb-3', { 'w-32': layout !== 'ROWS' })}>{text}</div>;
+  return <div className={classNames('border h-20 bg-primary mr-3 mb-3', { 'w-32': layout !== 'ROWS', 'w-full': layout === 'GALLERY' })}>{text}</div>;
 }
