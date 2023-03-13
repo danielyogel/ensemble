@@ -25,11 +25,11 @@ export function RenderItemContainer<V extends { id: string }>({ index, item, ren
       initial={false}
       id={`ensemble_item__${item.id}`}
       transition={{ duration: 0.8, delay: 0, ease: [0.25, 1, 0.5, 1] }}
-      className={classnames('shrink-0 grow-0', {
+      className={classnames({
         absolute: layout === 'SUN',
-        'pr-2': isGallery,
-        'w-full': isGallery && isThird,
-        grow: isGallery && !isThird
+        'shrink-0 grow-0': !isGallery,
+        'pr-2 grow': isGallery,
+        'w-full': isGallery && isThird
       })}
       style={{ top: `${BASE_MARGIN_X + x}px`, left: `${BASE_MARGIN_Y + y}px` }}
       key={item.id}
