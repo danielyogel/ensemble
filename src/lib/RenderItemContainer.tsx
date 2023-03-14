@@ -28,7 +28,7 @@ export function RenderItemContainer<V extends { id: string }>({ index, item, ren
       className={classnames({
         absolute: layout === 'SUN',
         'shrink-0 grow-0': !isGallery,
-        'pr-2 grow': isGallery,
+        'pr-0.5 grow': isGallery,
         'w-full': isGallery && isThird
       })}
       style={{ top: `${BASE_MARGIN_X + x}px`, left: `${BASE_MARGIN_Y + y}px` }}

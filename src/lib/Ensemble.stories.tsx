@@ -42,5 +42,7 @@ export function EnsembleStory() {
 //
 
 function RenderCard({ text, layout }: { text?: string; layout: LayoutType }) {
-  return <div className={classNames('border h-20 bg-primary mr-3 mb-3', { 'w-32': layout !== 'ROWS', 'w-full': layout === 'GALLERY' })}>{text}</div>;
+  return (
+    <div className={classNames('border h-20 bg-primary mr-3 mb-0.5', { 'w-32': layout !== 'ROWS', 'w-full': layout === 'GALLERY' })}>{text}</div>
+  );
 }
