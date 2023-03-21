@@ -46,8 +46,8 @@ export function Ensemble<V extends { id: string }>({
     <div className={classnames('h-full w-full relative')}>
       <div
         className={classnames('h-full', {
-          'overflow-y-scroll': !overflowVisible && isVertical,
-          'overflow-x-scroll': !overflowVisible && layout === 'LIST',
+          'overflow-y-scroll overflow-x-hidden': !overflowVisible && isVertical,
+          'overflow-x-scroll overflow-y-hidden': !overflowVisible && layout === 'LIST',
           'overflow-visible': overflowVisible,
           'pt-24': isVertical
         })}
