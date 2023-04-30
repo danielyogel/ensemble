@@ -13,6 +13,7 @@ type Params<V extends { id: string }> = {
   overflowVisible: boolean;
   forceMatrixStart?: boolean;
   noPadding?: boolean;
+  overflowConteinerRef?: React.RefObject<HTMLDivElement>;
 };
 
 export function Ensemble<V extends { id: string }>({
@@ -23,6 +24,7 @@ export function Ensemble<V extends { id: string }>({
   renderIndex,
   overflowVisible,
   forceMatrixStart,
+  overflowConteinerRef,
   noPadding = false
 }: Params<V>) {
   const isSingle = layout === 'SINGLE';
@@ -45,6 +47,7 @@ export function Ensemble<V extends { id: string }>({
   return (
     <div className={classnames('h-full w-full relative')}>
       <div
+        ref={overflowConteinerRef}
         className={classnames('h-full', {
           'overflow-y-scroll overflow-x-hidden': !overflowVisible && isVertical,
           'overflow-x-scroll overflow-y-hidden': !overflowVisible && layout === 'LIST',
